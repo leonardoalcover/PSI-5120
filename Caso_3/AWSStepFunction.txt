@@ -1,0 +1,26 @@
+{
+  "Comment": "A simple example of a State Machine that creates a user and notifies.",
+  "StartAt": "ValidateUser",
+  "States": {
+    "ValidateUser": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:851725435807:function:ValidateUserFunction",
+      "Next": "InsertUser"
+    },
+    "InsertUser": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:851725435807:function:InsertUserFunction",
+      "Next": "SendNotification"
+    },
+    "SendNotification": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:851725435807:function:SendNotificationFunction",
+      "Next": "LogUserCreation"
+    },
+    "LogUserCreation": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:851725435807:function:LogFunction",
+      "End": true
+    }
+  }
+}
