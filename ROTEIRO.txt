@@ -1,0 +1,57 @@
+######### ROTEIRO PRÁTICO #########
+
+Caso 1 - Básico: Função Lambda para Inserção de Dados no DynamoDB
+
+Passos para Implementação:
+	Criar uma Tabela no DynamoDB:
+		No AWS Console, acesse o DynamoDB e clique em Create Table.
+		Nomeie a tabela como Users.
+		Defina a chave primária como id (tipo String).
+		Mantenha as configurações padrão para os outros parâmetros e clique em Create.
+	Criar Função Lambda:
+		No AWS Lambda, clique em Create Function.
+		Nomeie a função como InsertUserFunction.
+		Selecione Python 3.x como o runtime.
+		Selecione ou crie uma nova role com permissões para acessar o DynamoDB.
+		Insira o código da função
+	Configurar o Evento de Teste:
+		Crie um evento de teste na aba Test.
+	Testar a Função Lambda:
+		Execute a função de teste e verifique os logs no CloudWatch para garantir que a função 		foi executada corretamente e que os dados foram inseridos no DynamoDB.
+
+Caso 2 - Intermediário: API REST com API Gateway e Lambda (Operações CRUD)
+
+Passos para Implementação:
+	Criar a Função Lambda CRUD:
+		Crie uma função Lambda chamada crudFunction.
+		Insira o código da função
+	Criar uma API no API Gateway:
+		No console do API Gateway, crie uma nova API HTTP.
+		Defina o recurso /users e adicione os métodos GET, POST, PUT e DELETE.
+		Vincule cada método à função crudFunction no Lambda.
+		Defina parâmetros de caminho para as operações GET e DELETE (exemplo: 				/users/{id}).
+	Implantar a API:
+		Clique em Deploy API para publicar os endpoints.
+	Testar a API:
+		Utilize ferramentas como Postman ou curl para testar os endpoints:
+			POST: Adicionar usuário.
+			GET: Buscar usuário.
+			PUT: Atualizar usuário.
+			DELETE: Deletar usuário.
+
+Caso 3 - Avançado: Orquestração com AWS Step Functions e Lambda
+
+Passos para Implementação:
+	Criar Funções Lambda:
+		Crie as seguintes funções Lambda:
+			ValidateUserFunction: Valida os dados de entrada.
+			InsertUserFunction: Insere o usuário no DynamoDB.
+			SendNotificationFunction: Envia uma notificação via SNS.
+			LogUserFunction: Grava os dados no S3.
+	Adicionar Código nas Funções
+	Criar uma Máquina de Estados no AWS Step Functions:
+		No console do AWS Step Functions, clique em Create state machine.
+		Defina o fluxo de trabalho.
+	Testar a Step Function:
+		Forneça os dados de entrada (JSON) no formato necessário e execute o fluxo.
+		Verifique o estado de cada etapa e valide se todos os passos (validação, inserção, 		notificação e log) foram executados corretamente.
